@@ -132,6 +132,7 @@ char* my_strcat(char *dest, char *src){
 		temp++;
 		dest++;
 	}
+
 		
 	while(*src != '\0'){
 		*temp = *src;
@@ -170,7 +171,6 @@ char * my_strncpy(char *s1, char *s2, int n){
 		i ++;
 	}
 	return (char *) s1; 
-	//err
 }
 
 char * my_strncat(char *dest, char *src, int n){
@@ -200,10 +200,11 @@ int my_strncmp(char *s1, char *s2, int n){
 	int i = 0; //numero de bytes comparados
 	int resta;
 	resta = 0;
-	while(*s1 != '\0' && *s2 != '\0' && resta == 0){
+	while(*s1 != '\0' && *s2 != '\0' && resta == 0 && i<=n){
 		resta = *s1 - *s2;
 		s1++;
 		s2++;
+		i++;
 	}
 
 	return resta;
