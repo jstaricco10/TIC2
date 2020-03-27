@@ -21,7 +21,7 @@ main(){
 	
 
 	char holapunt[] = "hola";
-	char juamnapunt[] = "lax";
+	char juamnapunt[] = " hola";
 
 	char *puntero;
 
@@ -52,12 +52,12 @@ main(){
 
 
 	//Prueba strcat
-	// char* resultado = my_strcat(holapunt,juamnapunt);
-	// printf("%s\n", my_strcat(holapunt,juamnapunt));
+	char* resultado = my_strcat(holapunt,juamnapunt);
+	printf("%s\n",resultado);
 
 	//Prueba strend
-	int validez = my_strend(holapunt,juamnapunt);
-	printf("%d\n", validez);
+	// int validez = my_strend(holapunt,juamnapunt);
+	// printf("%d\n", validez);
 
 
 
@@ -124,7 +124,7 @@ int my_strcasecmp(char *s1, char *s2){
 
 char* my_strcat(char *dest, char *src){
 	
-	char *temp = malloc(sizeof(char *));
+	char *temp;
     char *res = temp;
 	
 	while(*dest != '\0'){
