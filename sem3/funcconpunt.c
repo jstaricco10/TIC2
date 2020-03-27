@@ -121,7 +121,7 @@ int my_strcasecmp(char *s1, char *s2){
 char* my_strcat(char *dest, char *src){
 	char *res;
 	char *temp = res;
-	//int lugar;
+	
 	while(*dest != '\0'){
 		*temp = *dest;
 		temp++;
@@ -137,32 +137,76 @@ char* my_strcat(char *dest, char *src){
 
 }
 
-// char* my_strcat(char *s1, char *s2)
-// {
+int my_strend(char *s, char *end){
+	int largoS = my_strlen(*s);
+	int largoEnd = my_strlen(*end);
+	int lugar = 0;
+
+	while (lugar < (largoS-largoEnd)){
+		lugar++;
+		s++;
+	}
+
+	for (lugar; lugar< largoS; lugar++)
+	{
+		if(*s != *end ){
+			return 0;
+		}
+		s++;
+		end++;
+	}
+	return 1;
+}
+char * my_strncpy(char *s1, char *s2, int n){
+	// se copia como maximo n bytes
+	int i;
+	while(*s2 != '\0' && *s1 != '\0' && i <= n ){
+	 	*s1 = *s2;	
+	 	s1++;
+	 	s2++;
+	 	i++;
+	}
+	return (char *) s1; 
+}
+
+char * my_strncat(char *dest, char *src, int n){
+	char *res;
+	char *temp = res;
+	int i = 0; //bytes agregados
+	
+	while(*dest != '\0'){
+		*temp = *dest;
+		temp++;
+		dest++;
+	}	
+	while(*src != '\0'){
+		*temp = *src;
+		temp++;
+		src++;
+		i++;
+		if (i == n){
+			return (char *) res;
+		}
+	}
+	*temp = '\0'; 
+	return (char *) res;
+}
+
+int my_strncmp(char *s1, char *s2, int n){
+	int i = 0; //numero de bytes comparados
+	int resta;
+	resta = 0;
+	while(*s1 != '\0' && *s2 != '\0' && resta == 0){
+		resta = *s1 - *s2;
+		s1++;
+		s2++;
+	}
+
+	return resta;
+}
 
 
-//     char *p1 = (char *)s1;
-//     char *p2 = (char *)s2;
 
-//     char *string = malloc(sizeof(char *));
-//     char *res = string;
-
-//     while (*p1 != '\0')
-// {
-//         *string = *p1;
-//         string++;
-//         p1++;
-//     }
-//     while (*p2 != '\0')
-//     {
-//         *string = *p2;
-//         string++;
-//         p2++;
-// }
-//     *string = '\0'; 
-
-//     return (char *)res; 
-// }
 
 
 
