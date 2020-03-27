@@ -97,12 +97,6 @@ void my_strcpy(char *s1, char *s2){
 
 
 int my_strcmp(char *s1, char *s2){
-
-	// while(*s1 != '\0' && *s2 != '\0' && resta == 0){
-	// 	resta = *s1 - *s2;
-	// 	s1++;
-	// 	s2++;
-	// }
 	int comp;
 	comp = 0;
 
@@ -146,23 +140,33 @@ int my_strcasecmp(char *s1, char *s2){
 char* my_strcat(char *dest, char *src){
 	
 	char *temp;
-    char *res = temp;
+ //    char *res = temp;
 	
-	while(*dest != '\0'){
-		*temp = *dest;
-		temp++;
-		dest++;
-	}
+	// while(*dest != '\0'){
+	// 	*temp = *dest;
+	// 	temp++;
+	// 	dest++;
+	// }
 
 		
-	while(*src != '\0'){
-		*temp = *src;
-		temp++;
+	// while(*src != '\0'){
+	// 	*temp = *src;
+	// 	temp++;
+	// 	src++;
+	// }
+	// *temp = '\0';
+
+	// return (char *) res;
+
+	while (*dest)
+		dest++;
+	while(*dest = *src){
+		dest++;
 		src++;
 	}
-	*temp = '\0';
+	return (char *) temp;
 
-	return (char *) res;
+
 }
 
 int my_strend(char *s, char *end){
