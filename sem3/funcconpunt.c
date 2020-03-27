@@ -20,8 +20,8 @@ main(){
 	//char copia[] = "jola";
 	
 
-	char holapunt[] = "hola";
-	char juamnapunt[] = " hola";
+	char holapunt[] = "hol";
+	char juamnapunt[] = " hol ";
 
 	char *puntero;
 
@@ -42,8 +42,8 @@ main(){
 
 	//Prueba de strcmp:
 
-	// int comp =my_strcmp(holapunt,juamnapunt);
-	// printf("%d\n",comp );
+	int comp =my_strcmp(holapunt,juamnapunt);
+	printf("%d\n",comp );
 
 	//Prueba de strcasecmp:
 	// int compcase;
@@ -101,17 +101,16 @@ int my_strcmp(char *s1, char *s2){
 	comp = 0;
 
 	while (*s1 == *s2) {
-          if (*s1 == '\0' || *s2 == '\0')
-             break;
-
-          s1++;
-          s2++;
+        if (*s1 == '\0' || *s2 == '\0')
+            break;
+		s1++;
+        s2++;
        }
 
 	if (*s1 == '\0' && *s2 == '\0')
       return comp;
     else
-      return comp--;	
+      return -1;	
 }
 
 int my_strcasecmp(char *s1, char *s2){
@@ -168,38 +167,18 @@ int my_strend(char *s, char *end){
 	return 1;
 }
 char * my_strncpy(char *s1, char *s2, int n){
-	// se copia como maximo n bytes
+	// se copia como maximo n bytes err 4 y 5
 	int i;
 	i = 0;
 		while((*s1 = *s2) != '\0' && i<=n){
 		s1++;
 		s2++;
-		i ++;
+		i++;
 	}
 	return (char *) s1; 
 }
 
 char * my_strncat(char *dest, char *src, int n){
-	// char *res;
-	// char *temp = res;
-	// int i = 0; //bytes agregados
-	
-	// while(*dest != '\0'){
-	// 	*temp = *dest;
-	// 	temp++;
-	// 	dest++;
-	// }	
-	// while(*src != '\0'){
-	// 	*temp = *src;
-	// 	temp++;
-	// 	src++;
-	// 	i++;
-	// 	if (i == n){
-	// 		return (char *) res;
-	// 	}
-	// }
-	// *temp = '\0'; 
-	// return (char *) res;
 
 	char *temp = dest;
 	int i = 0; 
