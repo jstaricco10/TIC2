@@ -21,7 +21,7 @@ main(){
 	
 
 	char holapunt[] = "hola";
-	char juamnapunt[] = "HOLA";
+	char juamnapunt[] = "lax";
 
 	char *puntero;
 
@@ -52,8 +52,13 @@ main(){
 
 
 	//Prueba strcat
-	char* resultado = my_strcat(holapunt,juamnapunt);
-	printf("%s\n",resultado );
+	// char* resultado = my_strcat(holapunt,juamnapunt);
+	// printf("%s\n", my_strcat(holapunt,juamnapunt));
+
+	//Prueba strend
+	int validez = my_strend(holapunt,juamnapunt);
+	printf("%d\n", validez);
+
 
 
 	return 0;
@@ -71,14 +76,14 @@ int my_strlen(char *s){
 
 void my_strcpy(char *s1, char *s2){
 	// copiamos el s2 en el 1
-	// while(*s2 != '\0' && *s1 != '\0' ){
-	// 	*s1 = *s2;	
-	// 	s1++;
-	// 	s2++;
-	// }
+	while(*s2 != '\0' && *s1 != '\0' ){
+		*s1 = *s2;	
+		s1++;
+		s2++;
+	}
 
-	while((*s2++ = *s1++) != '\0')
-		;
+	// while((*s2++ = *s1++) != '\0')
+	// 	;
 
 }
 
@@ -119,44 +124,42 @@ int my_strcasecmp(char *s1, char *s2){
 }
 
 char* my_strcat(char *dest, char *src){
-	char *res;
-	char *temp = res; // alreves?
+	
+	char *temp = malloc(sizeof(char *));
+    char *res = temp;
 	
 	while(*dest != '\0'){
 		*temp = *dest;
 		temp++;
 		dest++;
-	}	
+	}
+		
 	while(*src != '\0'){
 		*temp = *src;
 		temp++;
 		src++;
 	}
-	*temp = '\0'; 
-	return (char *) temp;
-// mal
+	*temp = '\0';
+
+	return (char *) res;
 }
 
 int my_strend(char *s, char *end){
-	int largoS = my_strlen(*s);
-	int largoEnd = my_strlen(*end);
-	int lugar = 0;
+	//me muevo al final y comparo desde el ultimo para atras
+	char* aux = end; // nos va a servir
+	// para ver si es el principio de end
 
-	while (lugar < (largoS-largoEnd)){
-		lugar++;
+	while(*s)
 		s++;
-	}
-
-	for (lugar; lugar< largoS; lugar++)
-	{
-		if(*s != *end ){
-			return 0;
-		}
-		s++;
+	while(*end)
 		end++;
+	while(end > aux){
+		if (*end != *s)
+			return 0;
+		end--;
+		s--;
 	}
 	return 1;
-	//err
 }
 char * my_strncpy(char *s1, char *s2, int n){
 	// se copia como maximo n bytes
