@@ -52,12 +52,21 @@ main(){
 
 
 	//Prueba strcat
-	char* resultado = my_strcat(holapunt,juamnapunt);
-	printf("%s\n",resultado);
+	// char* resultado = my_strcat(holapunt,juamnapunt);
+	// printf("%s\n",resultado);
 
 	//Prueba strend
 	// int validez = my_strend(holapunt,juamnapunt);
 	// printf("%d\n", validez);
+
+	/*
+	La función index() devuelve un puntero a la 1ª ocurrencia del carácter c en la cadena s.
+
+       La función rindex() devuelve un puntero a la última ocurrencia del carácter c en la cadena
+       s.
+
+    strstr : Returns a pointer to the first occurrence of str2 in str1, or a null pointer if str2 is not part of str1.	   
+    */
 
 
 
@@ -88,15 +97,25 @@ void my_strcpy(char *s1, char *s2){
 
 
 int my_strcmp(char *s1, char *s2){
-	int resta;
-	resta = 0;
-	while(*s1 != '\0' && *s2 != '\0' && resta == 0){
-		resta = *s1 - *s2;
-		s1++;
-		s2++;
-	}
 
-	return resta;
+	// while(*s1 != '\0' && *s2 != '\0' && resta == 0){
+	// 	resta = *s1 - *s2;
+	// 	s1++;
+	// 	s2++;
+	// }
+
+	while (*s1 == *s2) {
+          if (*s1 == '\0' || *s2 == '\0')
+             break;
+
+          str1++;
+          str2++;
+       }
+
+	if (*s1 == '\0' && *s2 == '\0')
+      return 0;
+    else
+      return -1;	
 }
 
 int my_strcasecmp(char *s1, char *s2){
@@ -208,7 +227,7 @@ int my_strncmp(char *s1, char *s2, int n){
 	}
 
 	return resta;
-	//eroror
+	//eroror case 1 ,2 ,6
 }
 
 
