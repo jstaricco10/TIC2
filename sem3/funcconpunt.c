@@ -93,8 +93,6 @@ void my_strcpy(char *s1, char *s2){
 
 
 int my_strcmp(char *s1, char *s2){
-	int comp;
-	comp = 0;
 	int resta;
 	resta = 0;
 
@@ -114,26 +112,55 @@ int my_strcmp(char *s1, char *s2){
 }
 
 int my_strcasecmp(char *s1, char *s2){
+	// int resta;
+	// resta = 0;
+	// while(*s1 != '\0' && *s2 != '\0' && resta == 0){
+
+	// 	if ((*s1 >= 65) && (*s1 <= 90))
+	// 	{
+	// 	//mytolower(*s1);
+	// 		*s1 = *s1 + 32;
+	// 	}
+	// 	if ((*s2 >= 65) && (*s2 <= 90))
+	// 	{
+	// 		*s2 = *s2 + 32;	
+	// 	//mytolower(*s2);
+	// 	}
+	// 	resta = *s1 - *s2;
+	// 	s1++;
+	// 	s2++;
+	// }
+	// return resta;
+
 	int resta;
 	resta = 0;
-	while(*s1 != '\0' && *s2 != '\0' && resta == 0){
 
-		if ((*s1 >= 65) && (*s1 <= 90))
-		{
-		//mytolower(*s1);
-			*s1 = *s1 + 32;
-		}
-		if ((*s2 >= 65) && (*s2 <= 90))
-		{
-			*s2 = *s2 + 32;	
-		//mytolower(*s2);
-		}
-		resta = *s1 - *s2;
+	if ((*s1 >= 65) && (*s1 <= 90))
+		*s1 = *s1 + 32;
+	if ((*s2 >= 65) && (*s2 <= 90))
+		*s2 = *s2 + 32;
+
+
+	resta = *s1 - *s2;
+	while (resta == 0) {
+        if (*s1 == '\0' || *s2 == '\0')
+            break;
 		s1++;
-		s2++;
-	}
+        s2++;
+        if ((*s1 >= 65) && (*s1 <= 90))
+		*s1 = *s1 + 32;
+		if ((*s2 >= 65) && (*s2 <= 90))
+		*s2 = *s2 + 32;
 
-	return resta;
+        resta = *s1 - *s2;
+     }
+
+	if (*s1 == '\0' && *s2 == '\0')
+      return 0;
+    else
+      return resta;	
+
+
 }
 
 char* my_strcat(char *dest, char *src){
