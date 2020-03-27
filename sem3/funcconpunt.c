@@ -76,8 +76,7 @@ int my_strlen(char *s){
 
 void my_strcpy(char *s1, char *s2){
 	// copiamos el s2 en el 1
-	while(*s2 != '\0' && *s1 != '\0' ){
-		*s1 = *s2;	
+	while((*s1 = *s2) != '\0'){
 		s1++;
 		s2++;
 	}
@@ -164,11 +163,11 @@ int my_strend(char *s, char *end){
 char * my_strncpy(char *s1, char *s2, int n){
 	// se copia como maximo n bytes
 	int i;
-	while(*s2 != '\0' && *s1 != '\0' && i <= n ){
-	 	*s1 = *s2;	
-	 	s1++;
-	 	s2++;
-	 	i++;
+	i = 0;
+		while((*s1 = *s2) != '\0' && i<=n){
+		s1++;
+		s2++;
+		i ++;
 	}
 	return (char *) s1; 
 	//err
