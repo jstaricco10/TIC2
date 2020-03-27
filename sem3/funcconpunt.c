@@ -120,7 +120,7 @@ int my_strcasecmp(char *s1, char *s2){
 
 char* my_strcat(char *dest, char *src){
 	char *res;
-	char *temp = res;
+	char *temp = res; // alreves?
 	
 	while(*dest != '\0'){
 		*temp = *dest;
@@ -133,8 +133,8 @@ char* my_strcat(char *dest, char *src){
 		src++;
 	}
 	*temp = '\0'; 
-	return (char *) res;
-
+	return (char *) temp;
+// mal
 }
 
 int my_strend(char *s, char *end){
@@ -156,6 +156,7 @@ int my_strend(char *s, char *end){
 		end++;
 	}
 	return 1;
+	//err
 }
 char * my_strncpy(char *s1, char *s2, int n){
 	// se copia como maximo n bytes
@@ -167,6 +168,7 @@ char * my_strncpy(char *s1, char *s2, int n){
 	 	i++;
 	}
 	return (char *) s1; 
+	//err
 }
 
 char * my_strncat(char *dest, char *src, int n){
@@ -203,6 +205,7 @@ int my_strncmp(char *s1, char *s2, int n){
 	}
 
 	return resta;
+	//eroror
 }
 
 
