@@ -159,8 +159,6 @@ int my_strcasecmp(char *s1, char *s2){
       return 0;
     else
       return resta;	
-
-
 }
 
 char* my_strcat(char *dest, char *src){
