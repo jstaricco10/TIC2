@@ -108,8 +108,8 @@ int my_strcmp(char *s1, char *s2){
           if (*s1 == '\0' || *s2 == '\0')
              break;
 
-          str1++;
-          str2++;
+          s1++;
+          s2++;
        }
 
 	if (*s1 == '\0' && *s2 == '\0')
