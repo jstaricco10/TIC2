@@ -89,28 +89,28 @@ void my_strcpy(char *s1, char *s2){
 		s1++;
 		s2++;
 	}
-
-	// while((*s2++ = *s1++) != '\0')
-	// 	;
-
 }
 
 
 int my_strcmp(char *s1, char *s2){
 	int comp;
 	comp = 0;
+	int resta;
+	resta = 0;
 
-	while (*s1 == *s2) {
+	resta = *s1 - *s2;
+	while (resta == 0) {
         if (*s1 == '\0' || *s2 == '\0')
             break;
 		s1++;
         s2++;
-       }
+        resta = *s1 - *s2;
+     }
 
 	if (*s1 == '\0' && *s2 == '\0')
-      return comp;
+      return 0;
     else
-      return -1;	
+      return resta;	
 }
 
 int my_strcasecmp(char *s1, char *s2){
