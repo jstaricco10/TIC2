@@ -139,24 +139,7 @@ int my_strcasecmp(char *s1, char *s2){
 
 char* my_strcat(char *dest, char *src){
 	
-	char *temp;
- //    char *res = temp;
-	
-	// while(*dest != '\0'){
-	// 	*temp = *dest;
-	// 	temp++;
-	// 	dest++;
-	// }
-
-		
-	// while(*src != '\0'){
-	// 	*temp = *src;
-	// 	temp++;
-	// 	src++;
-	// }
-	// *temp = '\0';
-
-	// return (char *) res;
+	char *temp = dest; 
 
 	while (*dest)
 		dest++;
@@ -164,13 +147,11 @@ char* my_strcat(char *dest, char *src){
 		dest++;
 		src++;
 	}
-	return (char *) temp;
-
-
+	return temp;
 }
 
 int my_strend(char *s, char *end){
-	//me muevo al final y comparo desde el ultimo para atras
+	
 	char* aux = end; // nos va a servir
 	// para ver si es el principio de end
 
@@ -199,26 +180,44 @@ char * my_strncpy(char *s1, char *s2, int n){
 }
 
 char * my_strncat(char *dest, char *src, int n){
-	char *res;
-	char *temp = res;
-	int i = 0; //bytes agregados
+	// char *res;
+	// char *temp = res;
+	// int i = 0; //bytes agregados
 	
-	while(*dest != '\0'){
-		*temp = *dest;
-		temp++;
+	// while(*dest != '\0'){
+	// 	*temp = *dest;
+	// 	temp++;
+	// 	dest++;
+	// }	
+	// while(*src != '\0'){
+	// 	*temp = *src;
+	// 	temp++;
+	// 	src++;
+	// 	i++;
+	// 	if (i == n){
+	// 		return (char *) res;
+	// 	}
+	// }
+	// *temp = '\0'; 
+	// return (char *) res;
+
+	char *temp = dest;
+	int i = 0; 
+
+	while (*dest){
 		dest++;
-	}	
-	while(*src != '\0'){
-		*temp = *src;
-		temp++;
+		i++;
+		if(i > n)
+			return (char *) temp;		
+	}
+	while(*dest = *src){
+		dest++;
 		src++;
 		i++;
-		if (i == n){
-			return (char *) res;
-		}
+		if(i > n)
+			return (char *) temp;	
 	}
-	*temp = '\0'; 
-	return (char *) res;
+	return (char *) temp;
 }
 
 int my_strncmp(char *s1, char *s2, int n){
