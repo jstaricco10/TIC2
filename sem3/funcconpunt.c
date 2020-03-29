@@ -7,6 +7,12 @@ extern void mytolower(char *s1);
 
 extern char* my_strcat(char *dest, char *src);
 
+extern char* my_index(char* s, char c);
+
+extern char* my_rindex(char* s, char c);
+
+extern char* my_strstr (char* s1, char* s2);
+
 int
 main(){
 	//int x;
@@ -42,8 +48,8 @@ main(){
 
 	//Prueba de strcmp:
 
-	int comp =my_strcmp(holapunt,juamnapunt);
-	printf("%d\n",comp );
+	// int comp =my_strcmp(holapunt,juamnapunt);
+	// printf("%d\n",comp );
 
 	//Prueba de strcasecmp:
 	// int compcase;
@@ -59,14 +65,25 @@ main(){
 	// int validez = my_strend(holapunt,juamnapunt);
 	// printf("%d\n", validez);
 
-	/*
-	La función index() devuelve un puntero a la 1ª ocurrencia del carácter c en la cadena s.
 
-       La función rindex() devuelve un puntero a la última ocurrencia del carácter c en la cadena
-       s.
+	//Prueba index
+	char index1[] = "que le dice la banda";
+	
+	char* resultado = my_index(index1,'l');
+	printf("%d\n",resultado);
 
-    strstr : Returns a pointer to the first occurrence of str2 in str1, or a null pointer if str2 is not part of str1.	   
-    */
+	//Prueba rindex
+	char* resultado2 = my_rindex(index1,'l');
+	printf("%d\n", resultado2 );
+
+	//Prueba strstr
+	char str1[] = "el virus esta por todos lados";
+	char str2[] = "la";
+
+	char* resultado3 = my_strstr(index1,str2);
+	printf("%d\n", resultado3 );
+	
+
 
 
 
@@ -158,9 +175,9 @@ int my_strend(char *s, char *end){
 	
 	char* aux = end; // nos va a servir
 	// para ver si es el principio de end
-
-	while(*s)
+while(*s)
 		s++;
+	
 	while(*end)
 		end++;
 	while(end > aux){
@@ -225,9 +242,58 @@ int my_strncmp(char *s1, char *s2, int n){
       return 0;
     else
       return resta;	
+
+  // mucho exito solo er caso 5
 }
 
 
+
+
+	/*
+	La función index() devuelve un puntero a la 1ª ocurrencia del carácter c en la cadena s.
+
+       La función rindex() devuelve un puntero a la última ocurrencia del carácter c en la cadena
+       s.
+
+    strstr : Returns a pointer to the first occurrence of str2 in str1, or a null pointer if str2 is not part of str1.	   
+    */
+char* my_index(char* s, char c){
+	while (*s){
+		if(*s == c)
+			return  (char *) s;
+		s++;
+	}
+	return NULL;	
+}
+
+char* my_rindex(char* s, char c){
+	char* aux = s; // nos va a servir
+	// para ver si es el principio de end
+	while(*s)
+		s++;
+	while(s > aux){
+		if(*s == c)
+			return s;
+		s--;
+	}
+	return NULL;	
+}
+
+char* my_strstr (char* s1, char* s2){
+//primera ocurrencia de s2 en s1
+	char* aux = s1;
+	while(*s1){
+		while(*s1 == *s2){
+			s1++;
+			s2++;
+			if (*s2)
+				return aux;
+		}
+		s1++;
+		aux++;
+	}
+	return NULL;
+}
 
 
 
