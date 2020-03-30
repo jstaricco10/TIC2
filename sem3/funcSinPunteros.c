@@ -2,11 +2,11 @@
 
 
 
-void my_strcpy(char s1[], char s2[])
+void my_strcpy(char s1[], char s2[]);
 int
 main(){
 	
-	char hola[] = "hola";
+	char hola[] = "holaaaaa";
 	char copia[] = "HOLA";
 
 
@@ -16,12 +16,12 @@ main(){
 	//printf("%d\n", largo);
 
 	//Prueba de strcpy
-	//my_strcpy(copia,hola);
-	//printf("%s\n",copia );
+	my_strcpy(copia,hola);
+	printf("%s\n",copia );
 
 	//Prueba de strcmp
-	int comp =my_strcmp(hola,copia);
-	printf("%d\n",comp );
+	// int comp =my_strcmp(hola,copia);
+	// printf("%d\n",comp );
 
 	//Prueba de strcasecmp
 	// int comp2 = my_strcasecmp(hola,copia);
@@ -48,8 +48,6 @@ void my_strcpy(char s1[], char s2[]){
 		s1[lugar] = s2[lugar];
 		lugar++;
 	}
-
-	printf("%s\n",s1);
 }
 
 

@@ -189,7 +189,7 @@ while(*s)
 	return 1;
 }
 char * my_strncpy(char *s1, char *s2, int n){
-	// se copia como maximo n bytes err 4 y 5
+	// se copia como maximo n bytes
 	int i;
 	i = 0;
 		while((*s1 = *s2) != '\0' && i<=n){
@@ -243,7 +243,6 @@ int my_strncmp(char *s1, char *s2, int n){
     else
       return resta;	
 
-  // mucho exito solo er caso 5
 }
 
 
