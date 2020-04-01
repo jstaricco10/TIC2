@@ -297,7 +297,6 @@ char* my_strstr (char* s1, char* s2) {
 
 
 
-
 void mytolower(char* min) {
     if ((*min >= 65) && (*min <= 90))
         *min = *min + 32;

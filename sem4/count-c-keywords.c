@@ -70,7 +70,7 @@ int binsearch(char *word, struct key tab[], int n)
 
 
 //getword: get next word or character from input
-int gerword(char *word, int lim)
+int getword(char *word, int lim)
 {
 	int c;
 	char *w = word;
