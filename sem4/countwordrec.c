@@ -30,57 +30,24 @@ char *mystrdup(char *);
 struct listnode *
 addnode(struct listnode *p, char *w)
 {
-    int cond, cond2;
-    struct listnode *temp;
+    int cond;
     if (p == NULL)
     {
         p = lnalloc();
         p->word = strdup(w);
         p->count = 1;
         p->next = NULL;
-    }
-    else if (p->next != NULL) 
-    {
-        if ((cond = strcmp(w, p->next->word) < 0))
-            if (strcmp(w, p->word) > 0)
-            {
-                struct listnode *n;
-                n = lnalloc();
-                n->word = strdup(w);
-                n->count = 1;
-                n->next = p->next;
-                p->next = n;
-                return n;
-            }
-            else
-                p->count++;
-        else if (cond > 0)
-            return addnode(p->next, w);
-        else if (cond == 0)
-            p->next->count++;
-    }
-    else
-    {
-        if ((cond2 = strcmp(w, p->word)) == 0)
-            p->count++;
-        else if (cond2 > 0)
-        {
-             struct listnode *n;
-             n = lnalloc();
-             n->word = strdup(w);
-             n->count = 1;
-             n->next = NULL;
-             p->next = n;
-        }
-        else
-        {
-            struct listnode *n;
-            n = lnalloc();
-            n->word = strdup(w);
-            n->count = 1;
-            n->next = p;
-            return n;
-        }
+    } else if ((cond = strcmp(w, p->word)) < 0){
+        struct listnode *n;
+        n = lnalloc();
+        n->word = strdup(w);
+        n->count = 1;
+        n->next = p;
+        return n;
+    } else if (cond == 0)
+        p->count++;
+    else{
+        p->next = addnode(p->next, w);
     }
     return p;
 }
