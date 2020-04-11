@@ -5,6 +5,7 @@
 #define getch() getchar()
 #define ungetch(c) ungetc(c, stdin)
 #define MAXWORD 100
+#define MAXLINES 2000
 
 
 struct lineasnode{
@@ -28,18 +29,34 @@ main()
     char word[MAXWORD];
     root = NULL;
 
-    // char *linea = fgets()
-    // while (){
 
-    // }
+    char linea[1024];
+    FILE *fich;
+    int largoPalabra,largoLinea;
+    char *palabra;
+    int i =0;
+    int lineaactual = 1;
+ 
+    fich = fopen("test.txt", "r");
+    //Lee línea a línea y escribe en pantalla hasta el fin de fichero
+    while(fgets(linea, 1024, (FILE*) fich)) {
+            palabra = strtok(linea, " ");
+            while(palabra != NULL){
+                root = addlistnode(root,palabra,lineaactual);
+                palabra =  strtok(NULL, " ");
+             }
+        lineaactual++;
+    }
+    listprint(root);
+    fclose(fich);
 
 
-    // while (getword(word, MAXWORD) != EOF){
-        
-    //     if (isalpha(word[0]))
-    //         root = addlistnode(root, word,1);
-    // }
-    // listprint(root);
+    // sacar la linea del archivo hasta que no haya mas
+    // separar la linea en palabras 
+    // operar agregando a cada palabra que va apareciendo sus lineas
+
+
+
     return 0;
 }
 struct listnode *lnalloc(void);
@@ -99,7 +116,7 @@ listprint(struct listnode *p)
 {
     while (p != NULL)
     {   
-        printf("%s", p->word);
+        printf("%s esta en las lineas:", p->word);
         linesprint(p->lines);
         printf("\n");
         p = p->next;
