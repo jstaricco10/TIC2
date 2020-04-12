@@ -23,39 +23,50 @@ struct lineasnode *addline(struct lineasnode *, int l);
 void listprint(struct listnode *);
 void linesprint(struct lineasnode *);
 int
-main()
+main(int argc, char *argv[])
 {
     struct listnode *root;
-    char word[MAXWORD];
     root = NULL;
 
 
     char linea[1024];
-    FILE *fich;
-    int largoPalabra,largoLinea;
-    char *palabra;
-    int i =0;
+    char *aux;
+    // FILE *fich;
+    // int largoLinea;
+    int avanceNoLetra = 0;
+    int largoPalabra = 0;
     int lineaactual = 1;
  
-    fich = fopen("test.txt", "r");
-    //Lee línea a línea y escribe en pantalla hasta el fin de fichero
-    while(fgets(linea, 1024, (FILE*) fich)) {
-            palabra = strtok(linea, " ");
-            while(palabra != NULL){
-                root = addlistnode(root,palabra,lineaactual);
-                palabra =  strtok(NULL, " ");
-             }
+    // fich = fopen("test.txt", "r");
+    // //Lee línea a línea y escribe en pantalla hasta el fin de fichero
+    // while(fgets(linea, 1024, (FILE*) fich)) {
+    //         palabra = strtok(linea, " ");
+    //         while(palabra != NULL){
+    //             root = addlistnode(root,palabra,lineaactual);
+    //             palabra =  strtok(NULL, " ");
+    //          }
+    //     lineaactual++;
+    // }
+    // listprint(root);
+    // fclose(fich);
+
+
+    while (fgets(linea, 1024, stdin) != NULL){
+        aux = linea;
+        while (aux != '\0'){
+            avanceNoLetra = (int) strspn(aux, " ,.!?%()|:@#$%^&*-1234567890+/");
+            aux += avanceNoLetra;
+            largoPalabra = (int) strcspn(aux, " ,.!?%()|:@#$%^&*-1234567890+/" );
+            if (largoPalabra > 0){
+                char *palabra = (char *) malloc(largoPalabra);
+                palabra = strncpy(palabra, aux, largoPalabra);
+                root = addlistnode(root, palabra, lineaactual);
+            }
+            aux += largoPalabra;
+        }
         lineaactual++;
     }
     listprint(root);
-    fclose(fich);
-
-
-    // sacar la linea del archivo hasta que no haya mas
-    // separar la linea en palabras 
-    // operar agregando a cada palabra que va apareciendo sus lineas
-
-
 
     return 0;
 }
