@@ -31,29 +31,19 @@ main(int argc, char *argv[])
 
     char linea[1024];
     char *aux;
-    // FILE *fich;
-    // int largoLinea;
+
     int avanceNoLetra = 0;
     int largoPalabra = 0;
     int lineaactual = 1;
- 
-    // fich = fopen("test.txt", "r");
-    // //Lee línea a línea y escribe en pantalla hasta el fin de fichero
-    // while(fgets(linea, 1024, (FILE*) fich)) {
-    //         palabra = strtok(linea, " ");
-    //         while(palabra != NULL){
-    //             root = addlistnode(root,palabra,lineaactual);
-    //             palabra =  strtok(NULL, " ");
-    //          }
-    //     lineaactual++;
-    // }
-    // listprint(root);
-    // fclose(fich);
+
+    //Me funciona si le hago un input sin mandarle un archivo pero si 
+    // le mando por ej "./desafioTurismo < test.txt" a veces anda y 
+    // otras veces me tira segmentation fault.
 
 
     while (fgets(linea, 1024, stdin) != NULL){
         aux = linea;
-        while (aux != '\0'){
+        while (*aux != '\0'){
             avanceNoLetra = (int) strspn(aux, " ,.!?%()|:@#$%^&*-1234567890+/");
             aux += avanceNoLetra;
             largoPalabra = (int) strcspn(aux, " ,.!?%()|:@#$%^&*-1234567890+/" );
