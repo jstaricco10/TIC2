@@ -37,7 +37,7 @@ addnode(struct listnode *p, char *w)
         p->word = strdup(w);
         p->count = 1;
         p->next = NULL;
-    } else if ((cond = strcmp(w, p->word)) < 0) {
+    } else if ((cond = strcmp(w, p->word)) < 0){
         struct listnode *n;
         n = lnalloc();
         n->word = strdup(w);
@@ -46,7 +46,7 @@ addnode(struct listnode *p, char *w)
         return n;
     } else if (cond == 0)
         p->count++;
-    else {
+    else{
         p->next = addnode(p->next, w);
     }
     return p;
@@ -55,7 +55,7 @@ void
 listprint(struct listnode *p)
 {
     while (p != NULL)
-    {
+    {   
         printf("%4d %s\n", p->count, p->word);
         p = p->next;
     }
