@@ -22,7 +22,7 @@ main()
     while (getword(word, MAXWORD) != EOF)
         if (isalpha(word[0]))
             root = addnode(root, word);
-    listprint(root);
+    listprint(root); 
     return 0;
 }
 struct listnode *lnalloc(void);
