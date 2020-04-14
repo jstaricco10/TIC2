@@ -1,7 +1,7 @@
 /* Programa que borra archivos a partir de los
 nombres pasados como argumentos. Por ej: .unlink aborrar.txt
 Se usa la llamada al sistema:
-int unlink(const char *pathname, int flags, mode_t mode);
+int unlink(const char *pathname);
 */
 
 #include <sys/types.h>
@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
 	mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH; //0644 - rw para duenio, r para grupo y otros
 
 	while(--argc > 0){
-		if((fd = unlink(*++argv,flags,mode)) < 0){
+		if((fd = unlink(*++argv)) < 0){
 			error (0, errno, "No se pudo crear el archivo %s", *argv);
 		} else {
 			fprintf(stderr, "archivo %s borrado, descriptor desasignado %d. \n", *argv ,fd);
