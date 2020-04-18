@@ -96,5 +96,30 @@ main(int argc, char *argv[])
 
 
 struct list *list_create(void){
-	
+	struct list* lista = (struct list*) malloc_or_exit(sizeof(struct list));
+    lista -> qty = 0;
+    lista -> first = NULL;
+    lista -> last = NULL;
+    return lista;
+}
+
+struct list *list_insert_last_word(struct list *l, char *word){
+    int comp; 
+    if (l == NULL){
+        l = list_create();
+    } 
+    l->qty++;
+    struct listnode* ln = (struct listnode*) malloc_or_exit(sizeof(struct listnode));
+    ln -> word = strdup_or_exit(word);
+    ln -> next = NULL;
+
+    if (l->first == NULL)
+    {
+        l->first = ln;
+        l->last = ln;
+    } else{
+        l->last->next = ln;
+        l->last = ln;
+    }
+    return l;
 }
