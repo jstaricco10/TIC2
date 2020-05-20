@@ -31,5 +31,7 @@ def de_romano(rom):
 
 # una buena forma de manejar la entrada podria ser un contador que no pase de 3 numeros romanos iguales ya que en ese
 # caso el numero romano en input seria invalido
+# MAL por el caso en el que resta una de las siglas, si es mas chico que el siguiente DEBE RESTAR
+# Se podria siempre sumar y si se debe restar el doble del valor
 
-print(de_romano(""))
+print(de_romano("4"))
