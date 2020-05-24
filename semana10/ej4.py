@@ -29,7 +29,10 @@ jug2 = []
 indexes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
            15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
 empezo = 0  # para ver quien tiro primero, y asi seguir los turnos
-
+extremoizq = 0
+extremoder = 0
+quienva = 0  # variable par ver quien va
+# queda actulizar quien va y seguir hasta que uno se quede sin cartas o el mazo se acabe y ver quien gano
 
 
 def partida():
@@ -46,20 +49,26 @@ def partida():
 
 
 def primermovimiento(jug1, jug2):
+    global  extremoizq, extremoder
     for i in unoseis:
         if (i, i) in jug1:
             jug1.remove((i, i))
             pozo.append((i, i))
+            extremoizq = i
+            extremoder = i
             print(pozo)
             break
         if (i, i) in jug2:
             jug2.remove((i, i))
             pozo.append((i, i))
+            extremoizq = i
+            extremoder = i
             print(pozo)
             break
 
 
 def movimiento(jug1, jug2):
+    global empezo, extremoizq, extremoder
     if len(jug1) > len(jug2):
         empezo = 2
         print("va el 1")
@@ -68,13 +77,63 @@ def movimiento(jug1, jug2):
         print("va el 2")
 
     if empezo == 2:
-            for elem in jug1:
-                    print("jugada del 1")
+        for elem in jug1:
+            print("jugada del 1")  # hay que ver si una ficha del jugador encaja en uno de los extremos del pozo e insertarla, si no se saca una del mazo hasta que pueda
+            if elem[0] == extremoizq:
+                jug1.remove(elem)
+                pozo.insert(0, elem)  # falta ponerle que es en la posicion 0
+                extremoizq = elem[1]
+                break
+                # el elemento de jug1 se inserta por la izq y se cambia extremo izq por elem [1]
+            elif elem[0] == extremoder:
+                jug1.remove(elem)
+                pozo.append(elem)  # falta ponerle que es en la posicion ultima
+                extremoder = elem[1]
+                break
+                # el elemento de jug1 se inserta por la der y se cambia extremo izq por elem [1]
+            elif elem[1] == extremoizq:
+                jug1.remove(elem)
+                pozo.insert(0 ,elem)  # falta ponerle que es en la posicion 0
+                extremoizq = elem[0]
+                break
+                # el elemento de jug1 se inserta por la izq y se cambia extremo izq por elem [0]
+            elif elem[1] == extremoder:
+                jug1.remove(elem)
+                pozo.append(elem)  # falta ponerle que es en la posicion ultima
+                extremoder = elem[0]
+                break
+                # el elemento de jug1 se inserta por la der y se cambia extremo izq por elem [1]
+
     elif empezo == 1:
-            for elem in jug2:
-                    print("jugada del 2")
+        for elem in jug2:
+            print("jugada del 2")  # hay que ver si una ficha del jugador encaja en uno de los extremos del pozo e insertarla, si no se saca una del mazo hasta que pueda
+            if elem[0] == extremoizq:
+                jug2.remove(elem)
+                pozo.insert(0, elem)  # falta ponerle que es en la posicion 0
+                extremoizq = elem[1]
+                break
+                # el elemento de jug2 se inserta por la izq y se cambia extremo izq por elem [1]
+            elif elem[0] == extremoder:
+                jug2.remove(elem)
+                pozo.append(elem)  # falta ponerle que es en la posicion ultima
+                extremoder = elem[1]
+                break
+                # el elemento de jug2 se inserta por la der y se cambia extremo izq por elem [1]
+            elif elem[1] == extremoizq:
+                jug2.remove(elem)
+                pozo.insert(0, elem)  # falta ponerle que es en la posicion 0
+                extremoizq = elem[0]
+                break
+                # el elemento de jug2 se inserta por la izq y se cambia extremo izq por elem [0]
+            elif elem[1] == extremoder:
+                jug2.remove(elem)
+                pozo.append(elem)  # falta ponerle que es en la posicion ultima
+                extremoder = elem[0]
+                break
+                # el elemento de jug2 se inserta por la der y se cambia extremo izq por elem [1]
+    print(pozo)
+
 
 
 
 partida()
-
