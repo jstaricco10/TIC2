@@ -6,7 +6,7 @@ y retorna el string correspondiente a su numeración romana.  Por ejemplo romano
 
 # debemos ver por unidades, decenas, centenas y miles e ir encadenando
 def switcherUnidades(argument):
-    switcher = { #es un
+    switcher = {
         0: "",
         1: "I",
         2: "II",
@@ -18,7 +18,7 @@ def switcherUnidades(argument):
         8: "VIII",
         9: "IX",
     }
-    return switcher.get(argument,"")
+    return switcher.get(argument, "")
 
 
 def switcherDecenas(argument):
@@ -94,7 +94,7 @@ def romano(m):
     return romano
 
 
-print(romano(37))
+print(romano(1999))
 
 
 

@@ -2,36 +2,30 @@
 un string en notación romana y retorna su valor entero. No preocuparse por la corrección de la notación romana,
 pero detectar la mayor cantidad de errores posibles en la entrada. """
 
-"""I - 1  , V - 5  X - 10 ,  L - 50, C - 100, D -500,  M-1000  """
+"""I - 1  , V - 5  X - 10 ,  L - 50, C - 100, D -500,  M-1000  , debemos agregar el 4,9, 40,90,400,900"""
+
+dic = {"I": 1, "IV": 4, "V": 5, "IX": 9, "X": 10, "XL": 40, "L": 50, "XC": 90, "C": 100, "CD": 400, "D": 500,
+       "CM": 900, "M": 1000}
+# XCII : 92
+# veo un numero, es mas grande que el siguiente lo guardo en anterior y se sigue, si es mas chico lo resto dos veces
 
 
 def de_romano(rom):
+    numero_ant = 0
     result = 0
     arr = [char for char in rom]
+    cont = 0
     for i in arr:
-        if i == 'I':
-            result = result + 1
-        elif i == 'V':
-            result = result + 5
-        elif i == 'X':
-            result = result + 10
-        elif i == 'L':
-            result = result + 50
-        elif i == 'C':
-            result = result + 100
-        elif i == 'D':
-            result = result + 500
-        elif i == 'M':
-            result = result + 1000
+        if cont == 0:
+            cont += 1
+            numero_ant = dic[i]
+        result += dic[i]
+        if dic[i] > numero_ant:
+            result -= 2 * numero_ant
+            numero_ant = dic[i]
         else:
-            return print("NUMERO INVALIDO")
-
-
+            numero_ant = dic[i]
     return result
 
-# una buena forma de manejar la entrada podria ser un contador que no pase de 3 numeros romanos iguales ya que en ese
-# caso el numero romano en input seria invalido
-# MAL por el caso en el que resta una de las siglas, si es mas chico que el siguiente DEBE RESTAR
-# Se podria siempre sumar y si se debe restar el doble del valor
 
-print(de_romano("4"))
+print(de_romano("XCII"))
