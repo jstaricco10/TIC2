@@ -31,11 +31,11 @@ indexes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
 empezo = 0  # para ver quien tiro primero, y asi seguir los turnos
 extremoizq = 0
 extremoder = 0
-quienva = 0  # variable par ver quien va
 # queda actulizar quien va y seguir hasta que uno se quede sin cartas o el mazo se acabe y ver quien gano
 
 
 def partida():
+    global empezo, extremoizq, extremoder
     random.shuffle(mazo)
     # print(mazo)
     for i in range(0, 7):
@@ -44,12 +44,31 @@ def partida():
     print(jug1)
     print(jug2)
 
-    empezo = primermovimiento(jug1, jug2)
-    movimiento(jug1, jug2)
+    primermovimiento(jug1, jug2)
+    if len(jug1) > len(jug2):
+        empezo = 2
+        print("va el 1")
+    elif len(jug1) < len(jug2):
+        empezo = 1
+        print("va el 2")
+    # se deben  hacer movimientos mientas haya en el mazo, o los jugadores tengan cartas
+    while len(jug1) > 0 and len(jug2) > 0 and len(mazo) > 0:
+        movimiento(jug1, jug2)
+    print("Los resultados finales fueron: ")
+    print("El jugador 1 termino con " + str(len(jug1)) + " fichas")
+    print("El jugador 2 termino con " + str(len(jug2)) + " fichas")
+    print("El mazo termino con " + str(len(mazo)) + " fichas")
+    print(pozo)
+    if len(jug1) > len(jug2):
+        print("Gano el jugador 2!")
+    elif len(jug1) < len(jug2):
+        print("Gano el jugador 1!")
+    else:
+        print("Hubo empate!")
 
-
+# falta contemplar el caso en que niguno tiene un doble
 def primermovimiento(jug1, jug2):
-    global  extremoizq, extremoder
+    global extremoizq, extremoder
     for i in unoseis:
         if (i, i) in jug1:
             jug1.remove((i, i))
@@ -69,71 +88,76 @@ def primermovimiento(jug1, jug2):
 
 def movimiento(jug1, jug2):
     global empezo, extremoizq, extremoder
-    if len(jug1) > len(jug2):
-        empezo = 2
-        print("va el 1")
-    elif len(jug1) < len(jug2):
-        empezo = 1
-        print("va el 2")
-
     if empezo == 2:
+        print("jugada del 1")
         for elem in jug1:
-            print("jugada del 1")  # hay que ver si una ficha del jugador encaja en uno de los extremos del pozo e insertarla, si no se saca una del mazo hasta que pueda
+            # hay que ver si una ficha del jugador encaja en uno de los extremos del pozo e insertarla, si no se saca una del mazo hasta que pueda
             if elem[0] == extremoizq:
                 jug1.remove(elem)
                 pozo.insert(0, elem)  # falta ponerle que es en la posicion 0
                 extremoizq = elem[1]
+                empezo = 1  # va el 2 ahora
                 break
                 # el elemento de jug1 se inserta por la izq y se cambia extremo izq por elem [1]
             elif elem[0] == extremoder:
                 jug1.remove(elem)
                 pozo.append(elem)  # falta ponerle que es en la posicion ultima
                 extremoder = elem[1]
+                empezo = 1  # va el 2 ahora
                 break
                 # el elemento de jug1 se inserta por la der y se cambia extremo izq por elem [1]
             elif elem[1] == extremoizq:
                 jug1.remove(elem)
-                pozo.insert(0 ,elem)  # falta ponerle que es en la posicion 0
+                pozo.insert(0, elem)  # falta ponerle que es en la posicion 0
                 extremoizq = elem[0]
+                empezo = 1  # va el 2 ahora
                 break
                 # el elemento de jug1 se inserta por la izq y se cambia extremo izq por elem [0]
             elif elem[1] == extremoder:
                 jug1.remove(elem)
                 pozo.append(elem)  # falta ponerle que es en la posicion ultima
                 extremoder = elem[0]
+                empezo = 1  # va el 2 ahora
                 break
                 # el elemento de jug1 se inserta por la der y se cambia extremo izq por elem [1]
+        jug1.append(mazo.pop())
+        empezo = 1
 
     elif empezo == 1:
+        print("jugada del 2")
         for elem in jug2:
-            print("jugada del 2")  # hay que ver si una ficha del jugador encaja en uno de los extremos del pozo e insertarla, si no se saca una del mazo hasta que pueda
+            # hay que ver si una ficha del jugador encaja en uno de los extremos del pozo e insertarla, si no se saca una del mazo hasta que pueda
             if elem[0] == extremoizq:
                 jug2.remove(elem)
                 pozo.insert(0, elem)  # falta ponerle que es en la posicion 0
                 extremoizq = elem[1]
+                empezo = 2  # va el 1 ahora
                 break
                 # el elemento de jug2 se inserta por la izq y se cambia extremo izq por elem [1]
             elif elem[0] == extremoder:
                 jug2.remove(elem)
                 pozo.append(elem)  # falta ponerle que es en la posicion ultima
                 extremoder = elem[1]
+                empezo = 2  # va el 1 ahora
                 break
                 # el elemento de jug2 se inserta por la der y se cambia extremo izq por elem [1]
             elif elem[1] == extremoizq:
                 jug2.remove(elem)
                 pozo.insert(0, elem)  # falta ponerle que es en la posicion 0
                 extremoizq = elem[0]
+                empezo = 2  # va el 1 ahora
                 break
                 # el elemento de jug2 se inserta por la izq y se cambia extremo izq por elem [0]
             elif elem[1] == extremoder:
                 jug2.remove(elem)
                 pozo.append(elem)  # falta ponerle que es en la posicion ultima
                 extremoder = elem[0]
+                empezo = 2  # va el 1 ahora
                 break
+        jug2.append(mazo.pop())
+        empezo = 2
                 # el elemento de jug2 se inserta por la der y se cambia extremo izq por elem [1]
-    print(pozo)
-
-
+    # print(pozo)
 
 
 partida()
