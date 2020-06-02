@@ -8,16 +8,24 @@ ListasAlumnos = [[0, 31633, '0%'], [31633, 45190, '10%'],
 
 def calculo_irpf(tabla, salario):
     for elemento in tabla:
-        print(elemento)
-        if elemento[0] < salario < elemento[1]:
-            if elemento[2] == '10%':
-                return salario*0.1
+        if elemento[0] < salario< elemento[1]:
+            print(elemento[2])
+            if elemento[2] == '0%':
+                return int(salario*0)
+            elif elemento[2] == '10%':
+                return int(salario*0.1)
+            elif elemento[2] == '15%':
+                return int(salario*0.15)           
             elif elemento[2] == '24%':
-                return salario*0.24    
+                return int(salario*0.24)
+            elif elemento[2] == '25%':
+                return int(salario*0.25)  
             elif elemento[2] == '27%':
-                return salario*0.27
+                return int(salario*0.27)          
+            elif elemento[2] == '31%':
+                return int(salario*0.31)
             elif elemento[2] == '36%':
-                return salario*0.36          
+                return int(salario*0.36)        
     return "Salario invalido o muy superior" 
 
 
@@ -36,7 +44,7 @@ def main():
         salario = int(input('Ingrese un salario nominal mensual (0 para finalizar ) : '))
         if salario == 0:
             break
-        print(f'El IRPF para un salario mensual de ${salario} es {calculo_irpf(ListasAlumnos, salario)}.')
+        print(f'El IRPF para un salario mensual de ${salario} es ${calculo_irpf(ListasAlumnos, salario)}.')
 
 
 
