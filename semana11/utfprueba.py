@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#! /usr/bin/env python3
 letras = "ñáéíóúüÑÁÉÍÓÚÜ"
 
 print(letras.encode('utf8'))

@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#! /usr/bin/env python3
 # irpf2020.py
 
 ListasAlumnos = [[0, 31633, '0%'], [31633, 45190, '10%'],

@@ -1,5 +1,4 @@
-# !/usr/bin/env python3
-# truco.py
+#! /usr/bin/env python
 
 import random
 
