@@ -1,5 +1,6 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
+import numpy as np
 import random
 
 mazo = [('1', 'Oro'), ('2', 'Oro'), ('3', 'Oro'), ('4', 'Oro'), ('5', 'Oro'), ('6', 'Oro'), ('7', 'Oro'), ('10', 'Oro'),
@@ -43,17 +44,57 @@ def flor(jug, muestra):
     if nropiezas == 1:
         if noPiezas[0][1] == noPiezas[1][1]:
             return 0
+    if jug[0][1] == jug[1][1] and jug[0][1] == jug[2][1]:
+        return 0  #caso de todos del mismo palo
     return 1
+
+
+""" asumiendo que se va a mandar un carta del palo de la muestra"""
+
+
+def esPieza(carta):
+    if carta[0] == '2' or carta[0] == '4' or carta[0] == '5' or carta[0] == '11' or carta[0] == '10':
+        return True
+    else:
+        return False
+
 
 """ El envido son las dos mas altas con valores de piezas o si no hay pizas y hay dos del mismo palo son esas, mas 20
 el 10, 11 y 12 son 0"""
+
+
 def calculoEnvido(jug, muestra):
     envido = 0
+    puntosCartas = []
     paloMuestra = muestra[1]
-    for carta in jug: #sacamos el valor de la pieza del diccionario si hay pieza
+    mismoPalo = 20
+    pieza = False
+    min = 0
+    for carta in jug:  # sacamos el valor de la pieza del diccionario si hay pieza
         if carta[1] == paloMuestra:
-            if carta[0] == '2':
-                envido +=30
+            if esPieza(carta):
+                envido += dicPiezas[carta[0]]
+                puntosCartas.append(dicPiezas[carta[0]])
+                pieza = True
+            else:
+                envido += dicNoPiezas[carta[0]]
+                puntosCartas.append(dicNoPiezas[carta[0]])
+        else:
+            envido += dicNoPiezas[carta[0]]
+            puntosCartas.append(dicNoPiezas[carta[0]])
+    if not pieza:
+        if jug[0][1] == jug[1][1] or jug[0][1] == jug[2][1] or jug[1][1] == jug[2][1]:
+            envido += mismoPalo
+
+    if jug[0][1] == jug[1][1] or jug[0][1] == jug[2][1] or jug[1][1] == jug[2][1]:
+        if jug[0][1] == jug[1][1]:  #seria comparacion de palos de las cartas del jugador
+            envido -= puntosCartas[2]
+        elif jug[0][1] == jug[2][1]:
+            envido -= puntosCartas[1]
+        else:
+            envido -= puntosCartas[0]
+    else:
+        envido -= np.argmin(puntosCartas)
     return envido
 
 
