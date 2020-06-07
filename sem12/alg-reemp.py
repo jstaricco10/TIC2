@@ -7,7 +7,7 @@ Cuando llega una reemplaza en la posicion indicada en contador, si es que no est
  1 al contador de fallas"""
 
 
-def fifo(pages, frames):
+def fifo(pages, frames, v):
     fin = len(frames)
     fallas = 0
     posicion = 0
@@ -20,8 +20,12 @@ def fifo(pages, frames):
             posicion += 1
             if posicion == fin:
                 posicion = 0
-        print(frames)
-        print(fallas)
+        if v:
+            print(frames)
+            print(fallas)
+    print("El resulatado es: ")
+    print(frames)
+    print(fallas)
 
 
 """El algoritmo optimo reemplaza la pagina que no va a ser usada por en mayor tiempo posible """
@@ -45,7 +49,7 @@ def determinarposicionOpt(frames, pages, posicionc, fin):
 
 
 # TODO a retocar
-def optimal(pages, frames):
+def optimal(pages, frames, v):
     fallas = 0
     posicion = 0
     posicionc = 0
@@ -62,15 +66,19 @@ def optimal(pages, frames):
                 print("La posicion a reemplazar es " + str(posicion))
                 frames[posicion] = c
         posicionc += 1
-        print(frames)
-        print(fallas)
+        if v:
+            print(frames)
+            print(fallas)
+    print("El resulatado es: ")
+    print(frames)
+    print(fallas)
 
 
 """ En el lru se elige para reemplazar la que fue accedida hace mas tiempo y esa se reemplaza. Puedo
 reemplazar siempre por la posicion 0 y hacer rotar mi dequeue len(frames)-1 veces"""
 
 
-def lru(pages, frames):
+def lru(pages, frames, v):
     fallas = 0
     posicion = 0
     rotaciones = len(frames) - 1
@@ -84,29 +92,34 @@ def lru(pages, frames):
             else:
                 frames[0] = c
                 frames.rotate(rotaciones)
-        print(frames)
-        print(fallas)
-
-    pass
+        if v:
+            print(frames)
+            print(fallas)
+    print("El resulatado es: ")
+    print(frames)
+    print(fallas)
 
 
 def main():
     parser = argparse.ArgumentParser(description='Toma los datos a tener en cuenta para el algoritmo de reeplazo')
-    # parser.add_argument('-s', '--string', help='lista de paginas', required=True, type=str.upper)
-    # parser.add_argument('-f', '--frames', help='frames de paginas', type=int, required=True)
-    # parser.add_argument('-a', '--algoritmo', help='algoritmo de reemplazo a usar', default="FIFO", type=str.upper,
-    #                     required=True)
+    parser.add_argument('-s', '--string', help='lista de paginas', required=True, type=str.upper)
+    parser.add_argument('-f', '--frames', help='frames de paginas', type=int, required=True)
+    parser.add_argument('-a', '--algorithm', help='algoritmo de reemplazo a usar', default="fifo", type=str.upper,
+                        required=True)
     parser.add_argument('-v', '--verbose', help='Paso a paso de estado de frames, si no es '' .', default='')
     args = parser.parse_args()  # los argumentos quedan en args string, args length etc
-    # print(parser)
-    n = input("Introduzca la cantidad de frames (un entero): ")  # este sera el argumento de args.frames
-    list = [None] * int(n)
+    list = [None] * int(args.frames)
     frames = deque(list)
-    string = input("Introduzca el string de paginas:  ")
+    string = args.string
 
-    # fifo(string, frames)
-    # optimal(string, frames)
-    lru(string, frames)
+    if args.algorithm == "LRU":
+        lru(string, frames, args.verbose)
+    elif args.algorithm == "OPTIMAL":
+        optimal(string, frames, args.verbose)
+    elif args.algorithm == "FIFO":
+        fifo(string, frames, args.verbose)
+    else:
+        print("Escoja un algoritmo a ejecutar entre lru, optimal y fifo.")
 
 
 if __name__ == '__main__':
