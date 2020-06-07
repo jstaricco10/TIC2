@@ -106,7 +106,7 @@ def main():
     parser.add_argument('-f', '--frames', help='frames de paginas', type=int, required=True)
     parser.add_argument('-a', '--algorithm', help='algoritmo de reemplazo a usar', default="fifo", type=str.upper,
                         required=True)
-    parser.add_argument('-v', '--verbose', help='Paso a paso de estado de frames, si no es '' .', default='')
+    parser.add_argument('-v', '--verbose', help='Paso a paso de estado de frames si se pone', default='')
     args = parser.parse_args()  # los argumentos quedan en args string, args length etc
     list = [None] * int(args.frames)
     frames = deque(list)
