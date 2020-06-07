@@ -10,6 +10,31 @@ parser = argparse.ArgumentParser(description='Toma los datos a tener en cuenta p
 parser.add_argument('-v', '--verbose', help='Paso a paso de estado de frames, si no es '' .', default='')
 args = parser.parse_args()  # los argumentos quedan en args string, args length etc
 print(parser)
+n = 3  # este sera el argumento de args.frames
+list = [None] * n
+frames = deque(list)
+string = "2523464"
 
-frames = deque([], 4)
-print(frames[1])
+""" El algoritmo fifo agrega, con un contador de pos, aumenta el contador y si el contador es n-1 se reinicia a 0.
+Cuando llega una reemplaza en la posicion indicada en contador, si es que no esta en los frames, si esta suma
+ 1 al contador de fallas"""
+
+
+def fifo(pages, frames):
+    fin = len(frames)
+    fallas = 0
+    posicion = 0
+    # voy agregando char en la posicion posicion de frames con insert(i,a)
+    for c in pages:
+        if c in frames:
+            fallas += 1
+        else:
+            frames[posicion] = c
+            posicion += 1
+            if posicion == fin:
+                posicion = 0
+        print(frames)
+        print(fallas)
+
+
+fifo(string, frames)
