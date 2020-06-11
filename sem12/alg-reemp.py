@@ -13,9 +13,8 @@ def fifo(pages, frames, v):
     posicion = 0
     # voy agregando char en la posicion posicion de frames con insert(i,a)
     for c in pages:
-        if c in frames:
+        if c not in frames:
             fallas += 1
-        else:
             frames[posicion] = c
             posicion += 1
             if posicion == fin:
@@ -55,9 +54,8 @@ def optimal(pages, frames, v):
     posicionc = 0
     fin = len(frames)
     for c in pages:
-        if c in frames:
+        if c not in frames:
             fallas += 1
-        else:
             if None in frames:
                 frames[posicion] = c
                 posicion += 1
@@ -83,9 +81,8 @@ def lru(pages, frames, v):
     posicion = 0
     rotaciones = len(frames) - 1
     for c in pages:
-        if c in frames:
+        if c not in frames:
             fallas += 1
-        else:
             if None in frames:
                 frames[posicion] = c
                 posicion += 1
