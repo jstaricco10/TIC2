@@ -57,7 +57,7 @@ def encode(symb2freq):
 
 def compress(huff, args):
     file = open(args.file, 'rb')
-    print(huff)
+    # print(huff)
     newfile = open(args.file + ".huff", 'wb')
     # primero debemos hacer el cabezal
     numeromagico = "DG"
@@ -94,7 +94,7 @@ def main():
     parser = argparse.ArgumentParser(description='Parsea los datos pasados en consola')
     parser.add_argument('file', help='Archivo a comprimir')
     parser.add_argument('-f', '--force', help='Fuerza compresion aunque aumente el tamano', type=str.upper)
-    parser.add_argument('-v', '--verbose', help='Imprime informacion del avance del proceso', type=str.upper)
+    parser.add_argument('-v', '--verbose', help='Imprime informacion del avance del proceso', action='store_true')
     # con el parser debo procesar el nombre del archivo
     args = parser.parse_args()
     file = open(args.file, 'rb')  # debemos controlar el caso de que el file no sea encontrado
@@ -106,9 +106,10 @@ def main():
         symb2freq[b] += 1
     huff = encode(symb2freq)
     file.close()
-    print("Symbol\tWeight\tHuffman Code")
-    for p in huff:
-        print("%s\t%s\t%s" % (p.symbol, symb2freq[p.symbol], p.code))
+    if args.verbose:
+        print("Symbol\tWeight\tHuffman Code")
+        for p in huff:
+            print("%s\t%s\t%s" % (p.symbol, symb2freq[p.symbol], p.code))
     # print(huff)
     compress(huff, args)
 
