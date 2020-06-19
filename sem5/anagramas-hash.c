@@ -123,3 +123,45 @@ struct list *list_insert_last_word(struct list *l, char *word){
     }
     return l;
 }
+
+
+
+extern struct hashnode *hash_insert_word(struct hashnode *node, char *key, char *word){
+    int comp;
+    if(node == NULL){
+        struct hashnode* hn = (struct hashnode*) malloc_or_exit(sizeof(struct hashnode));
+        hn -> key = strdup_or_exit(key);
+        struct list *lista = list_create();
+        lista = list_insert_last_word(lista, word);
+        hn -> wlist = lista;
+        hn ->next = NULL;
+        node = hn;
+    else if ((comp = strcmp(key, node->key)) == 0){
+        node -> wlist = list_insert_last_word(word);
+    } else {
+        node -> next = hash_insert_word(node->next, key,word);
+    }
+    return node;
+}
+
+
+extern char *sort_word(char *word){
+    char *aux = word;
+    int i, j;
+    int len = strlen(word);
+    
+    for(i = 0; i < len-1; i++){
+        for(j = 0; j < len -1 - i; j++){
+            if(*word > *(word+1))
+                swap(*word, *(word+1));
+        }
+    }
+    return aux;
+}
+void swap(char *s, char *s2){
+    char temp = *s;
+    *s = *s2;
+    s* = temp;
+}
+
+

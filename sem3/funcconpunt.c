@@ -1,4 +1,4 @@
-#include <stdio.h>
+    #include <stdio.h>
 
 
 extern void my_strcpy(char *s1, char *s2);
