@@ -9,8 +9,7 @@ def main():
     parser = argparse.ArgumentParser(description='Parsea los datos del archivo pasado en consola')
     parser.add_argument('file', help='Archivo json con resultados')
     args = parser.parse_args()
-    # file = open(args.file, 'r')
-    file = json.load(open("rusia2018.json"))  # a este punto tenemos un diccionario con serie equipos y partidos
+    file = json.load(open(args.file))  # a este punto tenemos un diccionario con serie equipos y partidos
     # print(file)
     resultadosTotales = {}
     for serie in file:
