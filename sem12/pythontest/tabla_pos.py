@@ -55,14 +55,14 @@ def main():
                             res['pts'] += 3
                         if res['Equipo'] == eq2:
                             res['per'] += 1
-                    if goles1 == goles2:
+                    elif goles1 == goles2:
                         if res['Equipo'] == eq1:
                             res['em'] += 1
                             res['pts'] += 1
                         if res['Equipo'] == eq2:
                             res['em'] += 1
                             res['pts'] += 1
-                    if goles1 < goles2:
+                    else:
                         if res['Equipo'] == eq1:
                             res['per'] += 1
                         if res['Equipo'] == eq2:
