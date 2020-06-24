@@ -1,0 +1,113 @@
+{
+    "Serie B":
+        {
+            "Equipos":
+                [
+                    "España",
+                    "Portugal",
+                    "Irán",
+                    "Marruecos"
+                ],
+            "Partidos":
+                [
+                    {
+                        "España": 3,
+                        "Portugal": 3
+                    },
+                    {
+                        "Marruecos": 0,
+                        "Irán": 1
+                    },
+                    {
+                        "España": 1,
+                        "Irán": 0
+                    },
+                    {
+                        "Marruecos": 0,
+                        "Portugal": 1
+                    },
+                    {
+                        "España": 2,
+                        "Marruecos": 2
+                    },
+                    {
+                        "Portugal": 1,
+                        "Irán": 1
+                    }
+                ]
+        },
+    "Serie F":
+        {
+            "Equipos":
+                [
+                    "Alemania",
+                    "Suecia",
+                    "México",
+                    "Corea del Sur"
+                ],
+            "Partidos":
+                [
+                    {
+                        "Alemania": 2,
+                        "Suecia": 1
+                    },
+                    {
+                        "México": 2,
+                        "Corea del Sur": 1
+                    },
+                    {
+                        "Alemania": 0,
+                        "México": 1
+                    },
+                    {
+                        "Suecia": 1,
+                        "Corea del Sur": 0
+                    },
+                    {
+                        "Alemania": 0,
+                        "Corea del Sur": 2
+                    },
+                    {
+                        "México": 0,
+                        "Suecia": 3
+                    }
+                ]
+        },
+    "Serie A":
+        {
+            "Equipos":
+                [
+                    "Uruguay",
+                    "Rusia",
+                    "Arabia",
+                    "Egipto"
+                ],
+            "Partidos":
+                [
+                    {
+                        "Uruguay": 3,
+                        "Rusia": 0
+                    },
+                    {
+                        "Egipto": 1,
+                        "Arabia": 2
+                    },
+                    {
+                        "Uruguay": 1,
+                        "Egipto": 0
+                    },
+                    {
+                        "Rusia": 5,
+                        "Arabia": 0
+                    },
+                    {
+                        "Rusia": 3,
+                        "Egipto": 1
+                    },
+                    {
+                        "Uruguay": 1,
+                        "Arabia": 0
+                    }
+                ]
+        }
+}
